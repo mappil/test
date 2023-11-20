@@ -5,47 +5,173 @@
 <title>Ci mancherai danilo</title>
 <meta name="description" content="">
 <meta name="author" content="WebThemez">
+<style>
+	
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* general styling */
+:root {
+  --smaller: .75;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  align-items: center;
+  background-color: #83AE31;
+  display: flex;
+  font-family: -apple-system, 
+    BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Oxygen-Sans, 
+    Ubuntu, 
+    Cantarell, 
+    "Helvetica Neue", 
+    sans-serif;
+}
+
+.container {
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: .125rem;
+  text-transform: uppercase;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+.emoji {
+  display: none;
+  padding: 1rem;
+}
+
+.emoji span {
+  font-size: 4rem;
+  padding: 0 .5rem;
+}
+
+@media all and (max-width: 768px) {
+  h1 {
+    font-size: calc(1.5rem * var(--smaller));
+  }
+  
+  li {
+    font-size: calc(1.125rem * var(--smaller));
+  }
+  
+  li span {
+    font-size: calc(3.375rem * var(--smaller));
+  }
+}
+	</style>
 </head>
 
 <body>
-	<script src="https://cdn.logwork.com/widget/countdown.js"></script>
-	<h1 style="text-align: center;">Ciao Danilo</h3>
-	<h2 style="text-align: center;">Ci mancherai</h4>
-	<h3  id="titolo" style="text-align: center;"></h4>
-		<div style="display: flex;  justify-content: center;">
-			<img style="text-align: center;" src="https://i.ytimg.com/vi/dOJn_X1CLU8/maxresdefault.jpg" alt="Afcadone" width="300">
 
-		</div>
 
-		
-	<a href="https://logwork.com/countdown-8pbq" class="countdown-timer" data-timezone="Europe/Rome" data-language="it" data-date="2023-11-17 18:00">♥️
-		
-	</a>
-
-	<center></center><iframe width="560" height="315" src="https://www.youtube.com/embed/M3STj8zlQw4?si=Z8hA0gZHJxyqMyPZ&amp;controls=0&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
+	<div class="container">
+        <h1 style="text-align: center;">Ciao Danilo</h3>
+            <h2 style="text-align: center;">Ci mancherai</h4>
+            <h3  id="titolo" style="text-align: center;"></h4>
+                <div style="display: flex;  justify-content: center;">
+                    <img style="text-align: center;" src="https://i.ytimg.com/vi/dOJn_X1CLU8/maxresdefault.jpg" alt="Afcadone" width="300">
+        
+                </div>
+  <div id="countdown">
+    <ul>
+      <li><span id="days"></span>days</li>
+      <li><span id="hours"></span>Hours</li>
+      <li><span id="minutes"></span>Minutes</li>
+      <li><span id="seconds"></span>Seconds</li>
+    </ul>
+  </div>
+  <div id="content" class="emoji">
+    <span>🥳</span>
+    <span>🎉</span>
+    <span>🎂</span>
+  </div>
+</div>
 
 	<script>
-		var timeout;
-function changeText() {
-  var elem = document.getElementById("titolo");
+(function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
 
-  var date = new Date();
-  var horas = date.getHours();
-  var minutos = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+  //I'm adding this section so I don't have to keep updating this pen every year :-)
+  //remove this if you don't need it
+  let today = new Date(),
+      dd = String(today.getDate()).padStart(2, "0"),
+      mm = String(today.getMonth() + 1).padStart(2, "0"),
+      yyyy = 2023,
+      nextYear = yyyy,
+      dayMonth = "11/17/",
+      birthday = dayMonth + yyyy;
+  
+  today = mm + "/" + dd + "/" + yyyy;
+  if (today > birthday) {
+    //birthday = dayMonth + nextYear;
+  }
+  //end
+  
+  const countDown = new Date(birthday).getTime(),
+      x = setInterval(function() {    
 
+        const now = new Date().getTime(),
+              distance = now - countDown;
 
-  clearTimeout(timeout);
-  timeout = setTimeout(function() {
-	elem.innerHTML = "Ma assai proprio"
-  }, 3000);
-}
+        document.getElementById("days").innerText = Math.floor(distance / (day)),
+          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+          document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+          document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
 
-
-window.onload = function() {
-	changeText();
-};
-
+        //do something later when date is reached
+        if (distance < 0) {
+          document.getElementById("headline").innerText = "It's my birthday!";
+          document.getElementById("countdown").style.display = "none";
+          document.getElementById("content").style.display = "block";
+          clearInterval(x);
+        }
+        //seconds
+      }, 0)
+  }());
 	</script>
 </body>
 </html>
