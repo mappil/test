@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Ci mancherai Giuse</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://www.teleclubitalia.it/wp-content/uploads/2017/11/milano-napoli-1.jpg');
+      background-size: auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      text-align: center;
+      padding-top: 50px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin-top: 20px;
+      border: 4px solid white;
+    }
+
+    #counter {
+      font-size: 1.5em;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ci mancherai Giuse</h1>
+  <img src="https://github.com/mappil/test/blob/main/giuse.jpg?raw=true" alt="Giuse">
+  <div id="counter">Giorni passati: 0</div>
+
+  <script>
+    // Data di partenza (oggi)
+    const startDate = new Date();
+    startDate.setHours(0, 0, 0, 0); // solo la data, senza ore
+
+    function updateDaysPassed() {
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
+      const diffTime = now - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById('counter').textContent = `Giorni passati: ${diffDays}`;
+    }
+
+    updateDaysPassed();
+    setInterval(updateDaysPassed, 86400000); // aggiorna ogni 24 ore
+  </script>
+
+</body>
+</html>
