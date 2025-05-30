@@ -39,15 +39,16 @@
 </head>
 <body>
 
-  <h1>Ci mancherai Giuse</h1>
+  <h1>Ciao Giuse</h1>
+  <h2>ci mancherai</h2>
   <img src="https://github.com/mappil/test/blob/main/giuse.jpg?raw=true" alt="Giuse">
   <div id="counter">Giorni passati: 0</div>
 
   <script>
-    // Data di partenza (oggi)
-    const startDate = new Date();
+    // Data di partenza (30 maggio 2025)
+    const startDate = new Date(2025, 4, 30); // Mese 4 = Maggio (gennaio = 0)
     startDate.setHours(0, 0, 0, 0); // solo la data, senza ore
-
+  
     function updateDaysPassed() {
       const now = new Date();
       now.setHours(0, 0, 0, 0);
@@ -55,10 +56,11 @@
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       document.getElementById('counter').textContent = `Giorni passati: ${diffDays}`;
     }
-
+  
     updateDaysPassed();
     setInterval(updateDaysPassed, 86400000); // aggiorna ogni 24 ore
   </script>
+  
 
 </body>
 </html>
